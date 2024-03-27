@@ -1,11 +1,8 @@
 import ProfileForm from "@/components/forms/ProfileForm";
 import { useGetCurrentUser } from "@/lib/react-query/queriesAndMutation";
-import React from "react";
-import { useParams } from "react-router-dom";
 
 const UpdateProfile = () => {
-  const { id } = useParams();
-  const { data: user, isPending} = useGetCurrentUser();
+  const { data: user} = useGetCurrentUser();
   return (
     <div className="flex flex-1">
       <div className="common-container">

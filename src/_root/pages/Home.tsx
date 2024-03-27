@@ -6,20 +6,10 @@ import {
   useGetUsers,
 } from "@/lib/react-query/queriesAndMutation";
 import { Models } from "appwrite";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 const Home = () => {
-  const {
-    data: posts,
-    isPending: isPostLoading,
-    isError: isErrorPosts,
-  } = useGetRecentPosts();
-  const {
-    data: creators,
-    isPending: isUserLoading,
-    isError: isErrorCreators,
-  } = useGetUsers();
+  const { data: posts, isPending: isPostLoading } = useGetRecentPosts();
+  const { data: creators } = useGetUsers();
 
   return (
     <div className="flex flex-1">
@@ -31,7 +21,7 @@ const Home = () => {
           ) : (
             <ul className="flex flex-col flex-1 gap-9 w-full">
               {posts?.documents?.map((post: Models.Document) => (
-                <PostCard post={post} key={post.caption} />
+                <PostCard post={post} key={post.$id} />
               ))}
             </ul>
           )}

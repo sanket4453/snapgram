@@ -2,12 +2,12 @@ import GridPostList from "@/components/shared/GridPostList";
 import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/context/AuthContext";
 import { useGetCurrentUser } from "@/lib/react-query/queriesAndMutation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { user } = useUserContext();
-  const { data: profile, isPending } = useGetCurrentUser();
+  const { data: profile } = useGetCurrentUser();
   const [showEditProfile, setShowEditProfile] = useState(false);
 
   useEffect(() => {

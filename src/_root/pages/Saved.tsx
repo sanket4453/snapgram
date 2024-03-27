@@ -1,9 +1,9 @@
 import GridPostList from '@/components/shared/GridPostList';
 import { useGetCurrentUser } from '@/lib/react-query/queriesAndMutation';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Saved = () => {
-  const { data: profile, isPending } = useGetCurrentUser();
+  const { data: profile} = useGetCurrentUser();
   const [ savedPost, setSavedPost ] = useState([]);
 
   useEffect(() =>{

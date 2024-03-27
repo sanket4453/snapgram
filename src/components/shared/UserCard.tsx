@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Button } from "../ui/button";
 import { Models } from "appwrite";
-import { Link } from "react-router-dom";
-import {
-  useFollowUSer,
-  useGetCurrentUser,
-} from "@/lib/react-query/queriesAndMutation";
+// import {
+//   useFollowUSer,
+//   useGetCurrentUser,
+// } from "@/lib/react-query/queriesAndMutation";
 
 type userDataProps = {
   creator: Models.Document;
@@ -14,9 +12,9 @@ type userDataProps = {
 const UserCard = ({ creator }: userDataProps) => {
   // const { data: user, isPending } = useGetCurrentUser();
   // const followList = user?.follows?.map((u: Models.Document) => u.$id);
-  const { mutate: followedUser } = useFollowUSer();
+  // const { mutate: followedUser } = useFollowUSer();
   const [currentFollows, setCurrentFollows] = useState('Follow')
-  const [followList, setFollowList] = useState([]);
+  // const [followList, setFollowList] = useState([]);
 
 
 

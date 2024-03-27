@@ -6,13 +6,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
-import FileUploder from "../shared/FileUploder";
-import { PostValidation, ProfileValidation } from "@/lib/validations";
+import {  ProfileValidation } from "@/lib/validations";
 import { Models } from "appwrite";
 import { useUserContext } from "@/context/AuthContext";
 import { useToast } from "../ui/use-toast";
 import { useNavigate } from "react-router-dom";
-import { useCreatePost, useUpdatePost, useUpdateProfile } from "@/lib/react-query/queriesAndMutation";
+import { useUpdateProfile } from "@/lib/react-query/queriesAndMutation";
 import ProfileUploder from "../shared/ProfileUploder";
 import { useEffect, useState } from "react";
 // import { updateProfile } from "@/lib/appwrite/api";
