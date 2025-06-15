@@ -1,6 +1,6 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
@@ -25,6 +25,7 @@ import { useUserContext } from "@/context/AuthContext";
 
 const SignupForm = () => {
   const { toast } = useToast();
+   const [loading, setLoading] = useState(false);
   const { checkAuthUser } = useUserContext();
   const navigate = useNavigate();
 
@@ -45,10 +46,12 @@ const SignupForm = () => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
+    setLoading(true);
     const newUser = await createUserAccount(values);
 
     if (!newUser) {
-      return toast({ title: "Sign up failed. Please try again." });
+      setLoading(false);
+      return toast({ title: "Sign up failed. Please try again." });  
     }
 
     const session = await signInAccount({
@@ -57,6 +60,7 @@ const SignupForm = () => {
     });
 
     if (!session) {
+      setLoading(false);
       return toast({ title: "Sign up failed. Please try again." });
     }
 
@@ -69,6 +73,7 @@ const SignupForm = () => {
     } else {
       return toast({ title: "Sign up failed. Please try again" });
     }
+    setLoading(false)
   }
   return (
     <Form {...form}>
@@ -137,8 +142,8 @@ const SignupForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">
-            {isCreatingUser ? (
+          <Button type="submit" disabled={isCreatingUser || loading} className="shad-button_primary">
+            {isCreatingUser || loading ? (
               <div className="flex-center gap-2">
                 {" "}
                 <Loader /> Loading...

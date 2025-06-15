@@ -19,10 +19,12 @@ import Loader from "@/components/shared/Loader";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignInAccount } from "@/lib/react-query/queriesAndMutation";
 import { useUserContext } from "@/context/AuthContext";
+import { useState } from "react";
 
 const SigninForm = () => {
   const {toast} = useToast();
   const {checkAuthUser, isLoading : isUserLoading } = useUserContext();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 
@@ -41,13 +43,14 @@ const SigninForm = () => {
 
   // 2. Define a submit handler.
  async function onSubmit(values: z.infer<typeof SigninValidation>) {
-   
+    setLoading(true);
     const session = await signInAccount({
       email : values.email,
       password : values.password
     })
 
     if(!session){
+      setLoading(false);
       return toast({ title :'Sign in failed. Please try again.' })
     }
 
@@ -61,6 +64,7 @@ const SigninForm = () => {
     }else{
       return toast({title : "Sign in failed. Please try again"})
     }
+     setLoading(false);
     
   }
   return (
@@ -105,8 +109,8 @@ const SigninForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">
-            {isUserLoading ? (
+          <Button type="submit" disabled={isUserLoading || loading} className="shad-button_primary">
+            {isUserLoading || loading ? (
               <div className="flex-center gap-2"> <Loader /> Loading...</div>
             ) : "Log in"}
           </Button>
