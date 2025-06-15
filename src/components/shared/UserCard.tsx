@@ -23,7 +23,7 @@ const UserCard = ({ creator }: userDataProps) => {
   const handleFollow = (e: React.MouseEvent) => {
     e.stopPropagation();
     if(currentFollows === 'Follow') {
-    setCurrentFollows("Followed")
+    setCurrentFollows("Unfollow")
     }else{
       setCurrentFollows("Follow")
     }
