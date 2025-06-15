@@ -34,7 +34,7 @@ const Explore = () => {
   const shouldShowSearchResults = searchValue !== "";
   const shouldShowPosts =
     !shouldShowSearchResults &&
-    posts?.pages.every((item) => item?.documents.length === 0);
+    posts?.pages.every((item) => item?.documents?.length === 0);
   return (
     <div className="explore-container">
       <div className="explore-inner_container">
@@ -80,7 +80,7 @@ const Explore = () => {
           posts &&  posts?.pages.map((item, index) => (
             <GridPostList
               key={`page-${index}`}
-              posts={item.documents}
+              posts={item?.documents}
               showUser={true}
               showStats={true}
             />

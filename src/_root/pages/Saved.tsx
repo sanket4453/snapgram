@@ -16,7 +16,7 @@ const Saved = () => {
         <div className='mx-4'><img src='/public/assets/icons/save.svg' /></div>
         <div> <h3 className="body-bold md-:h3-bold">Saved Posts </h3></div>
       </div>
-       {savedPost.length > 0 ? savedPost.map((post) => {
+       {savedPost?.length > 0 ? savedPost?.map((post) => {
         return (
           <>
           <GridPostList posts={post} showUser={false} showStats={false} />

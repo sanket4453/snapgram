@@ -2,6 +2,7 @@ import { useUserContext } from "@/context/AuthContext";
 import { Models } from "appwrite";
 import { Link } from "react-router-dom";
 import PostStats from "./PostStats";
+import { getRandomImage } from "@/shared/utility";
 
 type GridPostListProps = {
   posts: Models.Document[];
@@ -22,7 +23,7 @@ const GridPostList = ({
           <li key={post.$id} className="relative min-w-80 h-80 mt-2">
             <Link to={`/posts/${post.$id}`} className="grid-post_link">
               <img
-                src={post.imageUrl}
+                src={getRandomImage()}
                 alt="post"
                 className="h-full w-full object-cover"
               />
@@ -32,13 +33,13 @@ const GridPostList = ({
                 <div className="flex items-center justify-start gap-2 flex-1">
                   <img
                     className="h-8 w-8 rounded-full"
-                    src={post.creator.imageUrl}
+                    src={post?.creator?.imageUrl}
                     alt="crator"
                   />
-                  <p className="line-clamp-1">{post.creator.name}</p>
+                  <p className="line-clamp-1">{post?.creator?.name}</p>
                 </div>
               )}
-              {showStats && <PostStats post={post} userId={user.id} />}
+              {showStats && <PostStats post={post} userId={user?.id} />}
             </div>
           </li>
         </ul>
